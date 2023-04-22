@@ -26,7 +26,7 @@ public class RegistroDeProducto {
 		EntityManager em = JPAUtils.getEntityManager();		
 		
 //		metodos de conexion con la base de datos
-		ProductoDAO productoDAO = new ProductoDAO(em);
+//		ProductoDAO productoDAO = new ProductoDAO(em);
 		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 
 
@@ -35,7 +35,7 @@ public class RegistroDeProducto {
 		
 //		se realiza la operacion de persistencia en la base de datos
 		categoriaDAO.guardar(celulares);
-		productoDAO.guardar(celular);
+//		productoDAO.guardar(celular);
 		
 //		se utilizara para dar persistencia en la base de datos, ademas permite hacer rollback
 		em.flush();
@@ -50,6 +50,20 @@ public class RegistroDeProducto {
 		
 		celulares.setNombre("SOFTWARE");
 		
+//		entidad con estado managed
 		em.flush();
+		
+//		entidad entra a esado detach
+		em.clear();
+		
+//		entidad vuelve al estado managed
+		celulares=em.merge(celulares);
+		
+		em.remove(celulares);
+		em.flush();
+		
+		
+		
+		
 	}
 }
