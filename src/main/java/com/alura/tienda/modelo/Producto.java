@@ -39,6 +39,7 @@ public class Producto {
 	private LocalDate fechaRegistro = LocalDate.now();
 	
 //	la siguiente anotacion permite darle un tipo, y definir que se guardara en la base 
+	
 //	de datos por defecto se almacena un numero que corresponde a la posicion de la categoria
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
